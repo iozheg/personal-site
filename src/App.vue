@@ -27,6 +27,10 @@ const tileContent = computed<string>(() => {
 function selectTile(id: TILES) {
   state.selectedTile = state.tiles.find(tile => tile.id === id) || null;
 }
+
+function unselectTile() {
+  state.selectedTile = null;
+}
 </script>
 
 <template>
@@ -38,6 +42,7 @@ function selectTile(id: TILES) {
       v-if="state.selectedTile"
       :tile="state.selectedTile"
       :content="tileContent"
+      @return="unselectTile"
     />
     <TileContainer
       :tiles="state.tiles"

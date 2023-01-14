@@ -7,11 +7,8 @@ defineProps<{
 
 const emit = defineEmits<{
   (e: "select"): void;
+  (e: "return"): void;
 }>();
-
-function select() {
-  emit("select");
-}
 </script>
 
 <template>
@@ -21,9 +18,13 @@ function select() {
       'single-tile--clickable': title && !highlighted,
       'single-tile--highlighted': highlighted
     }"
-    @click="select"
+    @click="emit('select')"
   >
-    <button v-if="highlighted" class="single-tile__back-button">
+    <button
+      v-if="highlighted"
+      class="single-tile__back-button"
+      @click="emit('return')"
+    >
       &larr;back
     </button>
     <div class="single-tile__title">

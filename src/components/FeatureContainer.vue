@@ -7,6 +7,10 @@ defineProps<{
   tile: ITile;
   content: string;
 }>();
+
+const emit = defineEmits<{
+  (e: "return"): void;
+}>();
 </script>
 
 <template>
@@ -16,6 +20,7 @@ defineProps<{
       :title="tile.title"
       :description="tile.description"
       :highlighted="true"
+      @return="emit('return')"
     />
     <FeatureData
       :type="tile.contentType"

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { onBeforeUnmount, ref, watch } from 'vue';
 
 const props = defineProps<{
   content: string;
@@ -21,6 +21,10 @@ watch(
     immediate: true
   }
 );
+
+onBeforeUnmount(() => {
+  clearTimeout(timeout);
+});
 
 function type() {
     if (i < props.content.length) {
