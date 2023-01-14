@@ -2,6 +2,31 @@
 import TheTitle from "./components/TheTitle.vue";
 import TileContainer from "./components/TileContainer.vue";
 import FeatureContainer from "./components/FeatureContainer.vue";
+import { computed, reactive } from "vue";
+import type { ITile } from "./types";
+import { content, tiles } from "@/content";
+import type { TILES } from "./enums";
+
+interface IState {
+  tiles: ITile[];
+  selectedTile: ITile | null;
+}
+
+const state = reactive<IState>({
+  tiles,
+  selectedTile: null
+});
+
+const tileContent = computed<string>(() => {
+  if (state.selectedTile) {
+    return content[state.selectedTile.id];
+  }
+  return "";
+});
+
+function selectTile(id: TILES) {
+  state.selectedTile = state.tiles.find(tile => tile.id === id) || null;
+}
 </script>
 
 <template>
@@ -9,8 +34,15 @@ import FeatureContainer from "./components/FeatureContainer.vue";
     <TheTitle />
   </header>
   <div class="wrapper">
-    <FeatureContainer />
-    <TileContainer />
+    <FeatureContainer
+      v-if="state.selectedTile"
+      :tile="state.selectedTile"
+      :content="tileContent"
+    />
+    <TileContainer
+      :tiles="state.tiles"
+      @select="selectTile"
+    />
   </div>
 </template>
 

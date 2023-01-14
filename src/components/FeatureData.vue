@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import type { CONTENT_TYPES } from '@/enums';
+import { CONTENT_TYPES } from '@/enums';
 import type { Component } from 'vue';
 import CodeViewer from './contentViewers/CodeViewer.vue';
 
 defineProps<{
-  type: CONTENT_TYPES;
+  type?: CONTENT_TYPES;
   content: string;
 }>();
-
 
 const typeComponents: { [key in CONTENT_TYPES]: Component } = {
   code: CodeViewer
@@ -17,7 +16,7 @@ const typeComponents: { [key in CONTENT_TYPES]: Component } = {
 <template>
   <div class="feature-data">
     <component
-      :is="typeComponents[type]"
+      :is="typeComponents[type || CONTENT_TYPES.code]"
       :content="content"
     />
   </div>
@@ -26,5 +25,6 @@ const typeComponents: { [key in CONTENT_TYPES]: Component } = {
 <style scoped>
 .feature-data {
   height: 100%;
+  overflow: auto;
 }
 </style>
