@@ -2,8 +2,7 @@
 defineProps<{
   title?: string;
   description?: string;
-  hide?: boolean;
-  size?: number;
+  highlighted?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -19,50 +18,63 @@ function select() {
   <div
     class="single-tile"
     :class="{
-      'single-tile--big': (size || 0) > 1,
-      'single-tile--clickable': title,
-      'single-tile--transparent': hide,
-      'single-tile--hidden': !title
+      'single-tile--clickable': title && !highlighted,
+      'single-tile--highlighted': highlighted
     }"
     @click="select"
   >
+    <button v-if="highlighted" class="single-tile__back-button">
+      &larr;back
+    </button>
     <div class="single-tile__title">
       {{ title }}
+    </div>
+    <div class="single-tile__description">
+      {{ description }}
     </div>
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .single-tile {
+  flex-shrink: 0;
   width: 256px;
   height: 256px;
+  padding: 15px 30px;
   background-color: #FFFFFF;
 
   transition: opacity 0.5s linear, box-shadow 0.5s, left 0.5s;
-}
 
-.single-tile--clickable {
-  cursor: pointer;
-  z-index: 2;
-}
+  &--clickable {
+    cursor: pointer;
+    z-index: 2;
 
-.single-tile--big {
-  width: 640px;
-}
+    &:hover {
+      box-shadow: 0px 0px 3px 0px #333333;
+      z-index: 99;
+    }
+  }
 
-.single-tile--clickable:hover {
-  box-shadow: 0px 0px 3px 0px #333333;
-  z-index: 99;
-}
+  &__title {
+    font-size: 36px;
+    color: #000000;
+  }
 
-.single-tile--transparent {
-  opacity: 0;
-}
+  &--highlighted {
+    background-color: #2D2D2D;
+  }
 
-.single-tile__title {
-  margin: 15px 30px;
-  font-size: 36px;
-  color: #000000;
+  &--highlighted &__title {
+    color: #FFFFFF;
+  }
+
+  &__back-button {
+    padding: 0;
+    border: none;
+    background: none;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
 }
 
 @media (min-width: 480px) {
