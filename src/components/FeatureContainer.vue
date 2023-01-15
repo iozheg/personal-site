@@ -17,8 +17,7 @@ const emit = defineEmits<{
   <div class="feature-container">
     <SingleTile 
       :key="tile.id"
-      :title="tile.title"
-      :description="tile.description"
+      :tile="tile"
       :clickable="false"
       :dark="true"
       @return="emit('return')"

@@ -6,6 +6,7 @@ import type { TILES } from '@/enums';
 defineProps<{
   tiles: ITile[];
   hide: boolean;
+  interactive: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -25,8 +26,8 @@ function selectTile(tileId: TILES) {
     <SingleTile
       v-for="tile in tiles"
       :key="tile.id"
-      :title="tile.title"
-      :clickable="true"
+      :tile="tile"
+      :clickable="interactive"
       @select="selectTile(tile.id)"
     />
   </div>

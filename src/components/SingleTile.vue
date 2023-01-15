@@ -1,7 +1,9 @@
 <script setup lang="ts">
-defineProps<{
-  title?: string;
-  description?: string;
+import type { ITile } from '@/types';
+import { computed } from 'vue';
+
+const props = defineProps<{
+  tile: ITile;
   clickable?: boolean;
   dark?: boolean;
 }>();
@@ -10,29 +12,30 @@ const emit = defineEmits<{
   (e: "select"): void;
   (e: "return"): void;
 }>();
+
+const isClickable = computed(() => props.clickable ?? true);
 </script>
 
 <template>
   <div
     class="single-tile"
     :class="{
-      'single-tile--clickable': clickable ?? true,
+      'single-tile--clickable': isClickable,
       'single-tile--dark': dark
     }"
     @click="emit('select')"
   >
     <button
-      v-if="!clickable"
+      v-if="!isClickable"
       class="single-tile__back-button"
       @click="emit('return')"
     >
       &larr;back
     </button>
     <div class="single-tile__title">
-      {{ title }}
+      {{ tile.title }}
     </div>
-    <div class="single-tile__description">
-      {{ description }}
+    <div v-if="!isClickable" v-html="tile.description" class="single-tile__description">
     </div>
   </div>
 </template>
@@ -66,6 +69,10 @@ const emit = defineEmits<{
     background-color: #2D2D2D;
   }
 
+  &--dark &__description {
+    color: var(--color-text);
+  }
+
   &--dark &__title {
     color: #FFFFFF;
   }
@@ -76,6 +83,11 @@ const emit = defineEmits<{
     background: none;
     color: #FFFFFF;
     cursor: pointer;
+  }
+
+  &__description {
+    color: #000000;
+    overflow-wrap: break-word;
   }
 }
 

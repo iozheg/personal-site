@@ -3,7 +3,7 @@ import { computed, reactive } from "vue";
 import TileContainer from "@/components/TileContainer.vue";
 import FeatureContainer from "@/components/FeatureContainer.vue";
 import type { ITile } from "@/types";
-import { content, tiles } from "@/content";
+import { skillContent, skillTiles } from "@/content";
 import type { TILES } from "@/enums";
 
 interface IState {
@@ -12,15 +12,14 @@ interface IState {
 }
 
 const state = reactive<IState>({
-  tiles,
+  tiles: skillTiles,
   selectedTile: null
 });
 
 const tileContent = computed<string>(() => {
-  if (state.selectedTile) {
-    return content[state.selectedTile.id];
-  }
-  return "";
+  return state.selectedTile
+    ? skillContent[state.selectedTile.id]
+    : ""
 });
 
 function selectTile(id: TILES) {
@@ -43,6 +42,7 @@ function unselectTile() {
     <TileContainer
       :tiles="state.tiles"
       :hide="!!state.selectedTile"
+      :interactive="true"
       @select="selectTile"
     />
   </div>
