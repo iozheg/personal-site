@@ -7,5 +7,9 @@ export enum TILES {
   css = "css",
   js = "js",
   vue = "vue",
-  pixijs = "pixijs"
+  pixijs = "pixijs",
+  email = "email",
+  github = "github",
+  linkedin = "linkedin",
+  telegram = "telegram"
 }

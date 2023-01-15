@@ -1,35 +1,29 @@
 import { TILES } from "./enums";
 import type { ITile } from "./types";
 
-export const tiles: ITile[] = [{
+export const skillTiles: ITile[] = [{
   id: TILES.html,
   title: "HTML",
-  description: "HTML",
-  hide: false
+  description: "HTML"
 }, {
   id: TILES.css,
   title: "CSS / SASS",
-  description: "CSS / SASS",
-  hide: false,
-  size: 1
+  description: "CSS / SASS"
 }, {
   id: TILES.js,
   title: "JavaScript / TypeScript",
-  description: "JavaScript / TypeScript",
-  hide: false
+  description: "JavaScript / TypeScript"
 }, {
   id: TILES.vue,
   title: "Vue",
-  description: "Vue",
-  hide: false
+  description: "Vue"
 }, {
   id: TILES.pixijs,
   title: "PixiJS",
-  description: "PixiJS",
-  hide: false
+  description: "PixiJS"
 }];
 
-export const content: { [key in TILES]: string } = {
+export const skillContent: { [key in TILES]?: string } = {
   [TILES.html]: `
 <!DOCTYPE html>
 <html lang="en">
@@ -124,3 +118,21 @@ function select() {
   `,
   [TILES.pixijs]: ""
 };
+
+export const contactTiles: ITile[] = [{
+  id: TILES.email,
+  title: "E-mail",
+  description: "<a href=\"mailto:https://github.com/iozheg\">aknetsev@gmail.com</a>"
+}, {
+  id: TILES.github,
+  title: "GitHub",
+  description: "<a href=\"https://github.com/iozheg\" target=\"_blank\">https://github.com/iozheg</a>"
+}, {
+  id: TILES.linkedin,
+  title: "LinkedIn",
+  description: "<a href=\"https://www.linkedin.com/in/aleksandr-netsev/\" target=\"_blank\">https://www.linkedin.com/in/aleksandr-netsev/</a>"
+}, {
+  id: TILES.telegram,
+  title: "Telegram",
+  description: "<a href=\"tg://resolve?domain=@netsev\" target=\"_blank\">@netsev</a>"
+}];
