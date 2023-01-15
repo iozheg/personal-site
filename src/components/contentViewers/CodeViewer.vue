@@ -46,3 +46,19 @@ function type() {
     />
   </div>
 </template>
+
+<style lang="scss">
+.code-viewer {
+  height: 100%;
+  font-size: 0.8rem;
+
+  pre {
+    height: 100%;
+    line-height: 1.2;
+
+    .hljs {
+      height: 100%;
+    }
+  }
+}
+</style>

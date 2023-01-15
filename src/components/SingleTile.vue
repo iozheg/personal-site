@@ -83,6 +83,12 @@ const emit = defineEmits<{
   .single-tile {
     width: var(--small-tile-size);
     height: var(--small-tile-size);
+
+    &--dark {
+      width: calc(var(--small-tile-size) * 2);
+    width: 100%;
+      height: 100%;
+    }
   }
 
   .single-tile__title {

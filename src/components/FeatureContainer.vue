@@ -38,4 +38,10 @@ const emit = defineEmits<{
   justify-content: left;
   background-color: #1e1e1e;
 }
+
+@media (max-width: 768px) {
+  .feature-container {
+    flex-wrap: wrap;
+  }
+}
 </style>

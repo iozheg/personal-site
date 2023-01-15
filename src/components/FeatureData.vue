@@ -25,7 +25,6 @@ const typeComponents: { [key in CONTENT_TYPES]: Component } = {
 <style scoped>
 .feature-data {
   height: calc(var(--big-tile-size) * 2);
-  padding: 0 15px;
   overflow: hidden;
 }
 </style>
