@@ -19,7 +19,8 @@ const emit = defineEmits<{
       :key="tile.id"
       :title="tile.title"
       :description="tile.description"
-      :highlighted="true"
+      :clickable="false"
+      :dark="true"
       @return="emit('return')"
     />
     <FeatureData

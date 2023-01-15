@@ -26,8 +26,7 @@ function selectTile(tileId: TILES) {
       v-for="tile in tiles"
       :key="tile.id"
       :title="tile.title"
-      :hide="tile.hide"
-      :size="tile.size"
+      :clickable="true"
       @select="selectTile(tile.id)"
     />
   </div>

@@ -2,7 +2,8 @@
 defineProps<{
   title?: string;
   description?: string;
-  highlighted?: boolean;
+  clickable?: boolean;
+  dark?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -15,13 +16,13 @@ const emit = defineEmits<{
   <div
     class="single-tile"
     :class="{
-      'single-tile--clickable': title && !highlighted,
-      'single-tile--highlighted': highlighted
+      'single-tile--clickable': clickable ?? true,
+      'single-tile--dark': dark
     }"
     @click="emit('select')"
   >
     <button
-      v-if="highlighted"
+      v-if="!clickable"
       class="single-tile__back-button"
       @click="emit('return')"
     >
@@ -39,8 +40,8 @@ const emit = defineEmits<{
 <style scoped lang="scss">
 .single-tile {
   flex-shrink: 0;
-  width: 256px;
-  height: 256px;
+  width: var(--big-tile-size);
+  height: var(--big-tile-size);
   padding: 15px 30px;
   background-color: #FFFFFF;
 
@@ -61,11 +62,11 @@ const emit = defineEmits<{
     color: #000000;
   }
 
-  &--highlighted {
+  &--dark {
     background-color: #2D2D2D;
   }
 
-  &--highlighted &__title {
+  &--dark &__title {
     color: #FFFFFF;
   }
 
@@ -80,8 +81,8 @@ const emit = defineEmits<{
 
 @media (min-width: 480px) {
   .single-tile {
-    width: 240px;
-    height: 240px;
+    width: var(--small-tile-size);
+    height: var(--small-tile-size);
   }
 
   .single-tile__title {
@@ -91,8 +92,8 @@ const emit = defineEmits<{
 
 @media (min-width: 768px) {
   .single-tile {
-    width: 256px;
-    height: 256px;
+    width: var(--big-tile-size);
+    height: var(--big-tile-size);
   }
 
   .single-tile__title {
