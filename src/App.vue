@@ -46,6 +46,7 @@ function unselectTile() {
     />
     <TileContainer
       :tiles="state.tiles"
+      :hide="!!state.selectedTile"
       @select="selectTile"
     />
   </div>
