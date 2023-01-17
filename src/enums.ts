@@ -13,3 +13,9 @@ export enum TILES {
   linkedin = "linkedin",
   telegram = "telegram"
 }
+
+export enum DESCRIPTION_TYPES {
+  string,
+  link,
+  image
+}

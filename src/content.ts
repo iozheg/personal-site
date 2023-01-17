@@ -1,4 +1,4 @@
-import { TILES } from "./enums";
+import { DESCRIPTION_TYPES, TILES } from "./enums";
 import type { ITile } from "./types";
 
 export const skillTiles: ITile[] = [{
@@ -122,17 +122,33 @@ function select() {
 export const contactTiles: ITile[] = [{
   id: TILES.email,
   title: "E-mail",
-  description: "<a href=\"mailto:https://github.com/iozheg\">aknetsev@gmail.com</a>"
+  description: {
+    type: DESCRIPTION_TYPES.link,
+    label: "aknetsev@gmail.com",
+    href: "mailto:https://github.com/iozheg"
+  }
 }, {
   id: TILES.github,
   title: "GitHub",
-  description: "<a href=\"https://github.com/iozheg\" target=\"_blank\">https://github.com/iozheg</a>"
+  description: {
+    type: DESCRIPTION_TYPES.link,
+    label: "https://github.com/iozheg",
+    href: "https://github.com/iozheg"
+  }
 }, {
   id: TILES.linkedin,
   title: "LinkedIn",
-  description: "<a href=\"https://www.linkedin.com/in/aleksandr-netsev/\" target=\"_blank\">https://www.linkedin.com/in/aleksandr-netsev/</a>"
+  description: {
+    type: DESCRIPTION_TYPES.link,
+    label: "https://www.linkedin.com/in/aleksandr-netsev/",
+    href: "https://www.linkedin.com/in/aleksandr-netsev/g"
+  }
 }, {
   id: TILES.telegram,
   title: "Telegram",
-  description: "<a href=\"tg://resolve?domain=@netsev\" target=\"_blank\">@netsev</a>"
+  description: {
+    type: DESCRIPTION_TYPES.link,
+    label: "@netsev",
+    href: "tg://resolve?domain=@netsev"
+  }
 }];

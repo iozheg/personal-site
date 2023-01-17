@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { DESCRIPTION_TYPES } from '@/enums';
 import type { ITile } from '@/types';
 import { computed } from 'vue';
+import EmailViewer from './descriptionViewers/LinkViewer.vue';
 
 const props = defineProps<{
   tile: ITile;
@@ -14,7 +16,20 @@ const emit = defineEmits<{
   (e: "return"): void;
 }>();
 
+const descriptionViewers = {
+  [DESCRIPTION_TYPES.string]: undefined,
+  [DESCRIPTION_TYPES.link]: EmailViewer,
+  [DESCRIPTION_TYPES.image]: EmailViewer
+};
+
+const descViewer = computed(() => {
+  return typeof props.tile.description === "object"
+    ? descriptionViewers[props.tile.description.type]
+    : descriptionViewers[DESCRIPTION_TYPES.string];
+});
+
 const isClickable = computed(() => props.clickable ?? true);
+const showDescription = computed(() => !isClickable.value);
 </script>
 
 <template>
@@ -37,8 +52,15 @@ const isClickable = computed(() => props.clickable ?? true);
     <div class="single-tile__title">
       {{ tile.title }}
     </div>
-    <div v-if="!isClickable" v-html="tile.description" class="single-tile__description">
+    <template v-if="showDescription">
+      <component
+        v-if="descViewer"
+        :is="descViewer"
+        v-bind="tile.description"
+      />
+      <div v-else v-html="tile.description" class="single-tile__description">
     </div>
+    </template>
   </div>
 </template>
 
