@@ -1,7 +1,7 @@
 <template>
   <div class="title-container">
     <div class="title">
-      Hi! I'm
+      Hi! I'm Alex Netsev
     </div>
     <div class="subtitle">
       web developer

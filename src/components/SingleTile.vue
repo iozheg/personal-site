@@ -28,7 +28,7 @@ const isClickable = computed(() => props.clickable ?? true);
     @click="emit('select')"
   >
     <button
-      v-if="!isClickable"
+      v-if="!isClickable && dark"
       class="single-tile__back-button"
       @click="emit('return')"
     >

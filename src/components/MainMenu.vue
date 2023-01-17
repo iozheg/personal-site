@@ -3,10 +3,10 @@ import { reactive } from 'vue';
 
 const state = reactive({
   menu: [{
-      label: "Skills",
+      label: "skills",
       route: "/skills"
     }, {
-      label: "Contacts",
+      label: "contacts",
       route: "/contacts"
     },
   ]
@@ -26,7 +26,7 @@ const state = reactive({
 
 <style scoped lang="scss">
 .main-menu {
-  margin: 1rem 0;
+  margin: 3rem 0 1rem 0;
   font-size: 1rem;
   text-align: center;
 
