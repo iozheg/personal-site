@@ -28,6 +28,7 @@ function selectTile(tileId: TILES) {
       :key="tile.id"
       :tile="tile"
       :clickable="interactive"
+      :hidden="hide"
       @select="selectTile(tile.id)"
     />
   </div>
@@ -43,9 +44,12 @@ function selectTile(tileId: TILES) {
   justify-content: left;
   background-color: #FFFFFF;
   transition: left 0.5s linear;
+  transition: all var(--tile-transition-time);
 
   &--hidden {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: all var(--tile-transition-time);
   }
 }
 </style>

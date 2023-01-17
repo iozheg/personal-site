@@ -39,6 +39,8 @@
 :root {
   --big-tile-size: 256px;
   --small-tile-size: 240px;
+
+  --tile-transition-time: 0.4s;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -5,6 +5,7 @@ import { computed } from 'vue';
 const props = defineProps<{
   tile: ITile;
   clickable?: boolean;
+  hidden?: boolean;
   dark?: boolean;
 }>();
 
@@ -21,6 +22,7 @@ const isClickable = computed(() => props.clickable ?? true);
     class="single-tile"
     :class="{
       'single-tile--clickable': isClickable,
+      'single-tile--hidden': hidden,
       'single-tile--dark': dark
     }"
     @click="emit('select')"
@@ -30,7 +32,7 @@ const isClickable = computed(() => props.clickable ?? true);
       class="single-tile__back-button"
       @click="emit('return')"
     >
-      &larr;back
+      &larr; back
     </button>
     <div class="single-tile__title">
       {{ tile.title }}
@@ -47,8 +49,7 @@ const isClickable = computed(() => props.clickable ?? true);
   height: var(--big-tile-size);
   padding: 15px 30px;
   background-color: #FFFFFF;
-
-  transition: opacity 0.5s linear, box-shadow 0.5s, left 0.5s;
+  transition: box-shadow 0.5s, left 0.5s;
 
   &--clickable {
     cursor: pointer;
@@ -60,13 +61,17 @@ const isClickable = computed(() => props.clickable ?? true);
     }
   }
 
-  &__title {
-    font-size: 36px;
-    color: #000000;
+  &--hidden {
+    animation: hide var(--tile-transition-time) forwards;
   }
 
   &--dark {
     background-color: #2D2D2D;
+  }
+
+  &__title {
+    font-size: 36px;
+    color: #000000;
   }
 
   &--dark &__description {
@@ -89,6 +94,18 @@ const isClickable = computed(() => props.clickable ?? true);
     color: #000000;
     overflow-wrap: break-word;
   }
+}
+
+@keyframes hide {
+    to {
+        height: 0;
+    }
+}
+
+@keyframes show {
+    to {
+        height: unset;
+    }
 }
 
 @media (min-width: 480px) {
