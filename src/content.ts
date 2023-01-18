@@ -1,24 +1,24 @@
-import { DESCRIPTION_TYPES, TILES } from "./enums";
+import { DESCRIPTION_TYPES } from "./enums";
 import type { ITile } from "./types";
 
 export const skillTiles: ITile[] = [{
-  id: TILES.html,
+  id: "html",
   title: "HTML",
   description: "HTML"
 }, {
-  id: TILES.css,
+  id: "css",
   title: "CSS / SASS",
   description: "CSS / SASS"
 }, {
-  id: TILES.js,
+  id: "js",
   title: "JavaScript / TypeScript",
   description: "JavaScript / TypeScript"
 }, {
-  id: TILES.vue,
+  id: "vue",
   title: "Vue",
   description: "Vue"
 }, {
-  id: TILES.pixijs,
+  id: "pixijs",
   title: "PixiJS",
   description: "PixiJS"
 }];
@@ -26,7 +26,7 @@ export const skillTiles: ITile[] = [{
 export const skillContent: {
   [key in string]?: string;
 } = {
-  [TILES.html]: `
+  html: `
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -45,7 +45,7 @@ export const skillContent: {
   </body>
 </html>
   `,
-  [TILES.css]: `
+  css: `
 .single-tile {
   flex-shrink: 0;
   width: 256px;
@@ -87,7 +87,7 @@ export const skillContent: {
   }
 }
   `,
-  [TILES.js]: `
+  js: `
 let currentContent = ref("");
 
 let i = 0;
@@ -101,7 +101,7 @@ function type() {
 
 type();
   `,
-  [TILES.vue]: `
+  vue: `
 <script setup lang="ts">
 defineProps<{
   title?: string;
@@ -118,11 +118,11 @@ function select() {
 }
 </script>
   `,
-  [TILES.pixijs]: ""
+  pixijs: ""
 };
 
 export const contactTiles: ITile[] = [{
-  id: TILES.email,
+  id: "email",
   title: "E-mail",
   description: {
     type: DESCRIPTION_TYPES.link,
@@ -130,7 +130,7 @@ export const contactTiles: ITile[] = [{
     href: "mailto:https://github.com/iozheg"
   }
 }, {
-  id: TILES.github,
+  id: "github",
   title: "GitHub",
   description: {
     type: DESCRIPTION_TYPES.link,
@@ -138,7 +138,7 @@ export const contactTiles: ITile[] = [{
     href: "https://github.com/iozheg"
   }
 }, {
-  id: TILES.linkedin,
+  id: "linkedin",
   title: "LinkedIn",
   description: {
     type: DESCRIPTION_TYPES.link,
@@ -146,7 +146,7 @@ export const contactTiles: ITile[] = [{
     href: "https://www.linkedin.com/in/aleksandr-netsev/g"
   }
 }, {
-  id: TILES.telegram,
+  id: "telegram",
   title: "Telegram",
   description: {
     type: DESCRIPTION_TYPES.link,
@@ -154,6 +154,7 @@ export const contactTiles: ITile[] = [{
     href: "tg://resolve?domain=@netsev"
   }
 }];
+
 export const aboutTiles: ITile[] = [{
   id: "photo",
   title: "Photo",

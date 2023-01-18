@@ -4,7 +4,6 @@ import TileContainer from "@/components/TileContainer.vue";
 import FeatureContainer from "@/components/FeatureContainer.vue";
 import type { ITile } from "@/types";
 import { skillContent, skillTiles } from "@/content";
-import type { TILES } from "@/enums";
 
 interface IState {
   tiles: ITile[];
@@ -22,7 +21,7 @@ const tileContent = computed<string>(() => {
     : ""
 });
 
-function selectTile(id: TILES | string) {
+function selectTile(id: string) {
   state.selectedTile = state.tiles.find(tile => tile.id === id) || null;
 }
 

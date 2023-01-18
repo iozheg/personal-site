@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import SingleTile from './SingleTile.vue';
 import type { ITile } from '@/types';
-import type { TILES } from '@/enums';
 
 defineProps<{
   tiles: ITile[];
@@ -10,10 +9,10 @@ defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (e: "select", tileId: TILES | string): void;
+  (e: "select", tileId: string): void;
 }>();
 
-function selectTile(tileId: TILES | string) {
+function selectTile(tileId: string) {
   emit("select", tileId);
 }
 </script>
