@@ -6,5 +6,15 @@ defineProps<{
 </script>
 
 <template>
-  <a :href="href" target="_blank">{{ label }}</a>
+  <a class="link-viewer" :href="href" target="_blank">{{ label }}</a>
 </template>
+
+<style scoped lang="scss">
+.link-viewer {
+  overflow-wrap: break-word;
+
+  &:hover {
+    text-decoration: underline 2px black;
+  }
+}
+</style>
