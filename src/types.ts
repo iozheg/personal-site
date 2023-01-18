@@ -4,15 +4,23 @@ interface IGenericDescription {
   type: DESCRIPTION_TYPES;
 }
 
-export type ILinkDescription = IGenericDescription & {
+type ILinkDescription = IGenericDescription & {
   label: string;
   href: string;
 }
 
-export type IDescription = ILinkDescription;
+type IImageDescription = IGenericDescription & {
+  imageUrl: string;
+}
+
+type IListDescription = IGenericDescription & {
+  items: string[];
+}
+
+export type IDescription = ILinkDescription | IImageDescription | IListDescription;
 
 export interface ITile {
-  id: TILES;
+  id: TILES | string;
   title?: string;
   description?: string | IDescription;
   contentType?: CONTENT_TYPES;

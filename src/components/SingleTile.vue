@@ -2,6 +2,7 @@
 import { DESCRIPTION_TYPES } from '@/enums';
 import type { ITile } from '@/types';
 import { computed } from 'vue';
+import ImageViewer from './descriptionViewers/ImageViewer.vue';
 import EmailViewer from './descriptionViewers/LinkViewer.vue';
 
 const props = defineProps<{
@@ -19,7 +20,7 @@ const emit = defineEmits<{
 const descriptionViewers = {
   [DESCRIPTION_TYPES.string]: undefined,
   [DESCRIPTION_TYPES.link]: EmailViewer,
-  [DESCRIPTION_TYPES.image]: EmailViewer
+  [DESCRIPTION_TYPES.image]: ImageViewer
 };
 
 const descViewer = computed(() => {
@@ -66,6 +67,10 @@ const showDescription = computed(() => !isClickable.value);
 
 <style scoped lang="scss">
 .single-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
   flex-shrink: 0;
   width: var(--big-tile-size);
   height: var(--big-tile-size);

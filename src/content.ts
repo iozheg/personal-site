@@ -23,7 +23,9 @@ export const skillTiles: ITile[] = [{
   description: "PixiJS"
 }];
 
-export const skillContent: { [key in TILES]?: string } = {
+export const skillContent: {
+  [key in string]?: string;
+} = {
   [TILES.html]: `
 <!DOCTYPE html>
 <html lang="en">
@@ -150,5 +152,13 @@ export const contactTiles: ITile[] = [{
     type: DESCRIPTION_TYPES.link,
     label: "@netsev",
     href: "tg://resolve?domain=@netsev"
+  }
+}];
+export const aboutTiles: ITile[] = [{
+  id: "photo",
+  title: "Photo",
+  description: {
+    type: DESCRIPTION_TYPES.image,
+    imageUrl: "me.jpeg"
   }
 }];

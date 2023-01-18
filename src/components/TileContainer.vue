@@ -5,15 +5,15 @@ import type { TILES } from '@/enums';
 
 defineProps<{
   tiles: ITile[];
-  hide: boolean;
+  hide?: boolean;
   interactive: boolean;
 }>();
 
 const emit = defineEmits<{
-  (e: "select", tileId: TILES): void;
+  (e: "select", tileId: TILES | string): void;
 }>();
 
-function selectTile(tileId: TILES) {
+function selectTile(tileId: TILES | string) {
   emit("select", tileId);
 }
 </script>

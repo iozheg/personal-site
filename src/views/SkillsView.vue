@@ -16,13 +16,13 @@ const state = reactive<IState>({
   selectedTile: null
 });
 
-const tileContent = computed<string>(() => {
+const tileContent = computed<string>(() => { 
   return state.selectedTile
-    ? skillContent[state.selectedTile.id]
+    ? skillContent[state.selectedTile?.id] || ""
     : ""
 });
 
-function selectTile(id: TILES) {
+function selectTile(id: TILES | string) {
   state.selectedTile = state.tiles.find(tile => tile.id === id) || null;
 }
 

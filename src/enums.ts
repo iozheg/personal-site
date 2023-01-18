@@ -17,5 +17,6 @@ export enum TILES {
 export enum DESCRIPTION_TYPES {
   string,
   link,
-  image
+  image,
+  list
 }

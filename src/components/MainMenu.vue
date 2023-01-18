@@ -8,7 +8,10 @@ const state = reactive({
     }, {
       label: "contacts",
       route: "/contacts"
-    },
+    }, {
+      label: "about",
+      route: "/about"
+    }
   ]
 });
 </script>
