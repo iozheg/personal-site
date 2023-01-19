@@ -4,19 +4,19 @@ import type { ITile } from "./types";
 export const skillTiles: ITile[] = [{
   id: "html",
   title: "HTML",
-  description: "HTML"
+  description: "Template for SingleTile component."
 }, {
   id: "css",
   title: "CSS / SASS",
-  description: "CSS / SASS"
+  description: "Some styles from SingleTile with simple animation."
 }, {
   id: "js",
   title: "JavaScript / TypeScript",
-  description: "JavaScript / TypeScript"
+  description: "Simple snippet to imitate typing."
 }, {
   id: "vue",
   title: "Vue",
-  description: "Vue"
+  description: "VueJS 3 component for SingleTile using Composition API."
 }, {
   id: "pixijs",
   title: "PixiJS",
@@ -27,33 +27,48 @@ export const skillContent: {
   [key in string]?: string;
 } = {
   html: `
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta
-      name="viewport"
-      content="width=device-width,
-      initial-scale=1.0"
-    >
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
-</html>
+<div
+  class="single-tile"
+  :class="{
+    'single-tile--clickable': isClickable,
+    'single-tile--hidden': hidden,
+    'single-tile--dark': dark
+  }"
+  @click="emit('select')"
+>
+  <button
+    v-if="!isClickable && dark"
+    class="single-tile__back-button"
+    @click="emit('return')"
+  >
+    &larr; back
+  </button>
+  <div class="single-tile__title">
+    {{ tile.title }}
+  </div>
+  <template v-if="showDescription">
+    <component
+      v-if="descViewer"
+      :is="descViewer"
+      v-bind="tile.description"
+    />
+    <div v-else v-html="tile.description" class="single-tile__description">
+  </div>
+  </template>
+</div>
   `,
   css: `
 .single-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
   flex-shrink: 0;
-  width: 256px;
-  height: 256px;
+  width: var(--big-tile-size);
+  height: var(--big-tile-size);
   padding: 15px 30px;
   background-color: #FFFFFF;
-
-  transition: opacity 0.5s linear, box-shadow 0.5s, left 0.5s;
+  transition: box-shadow 0.5s, left 0.5s;
 
   &--clickable {
     cursor: pointer;
@@ -65,16 +80,25 @@ export const skillContent: {
     }
   }
 
+  &--hidden {
+    animation: hide var(--tile-transition-time) forwards;
+  }
+
+  &--dark {
+    background-color: #2D2D2D;
+  }
+
   &__title {
+    min-height: 56px;
     font-size: 36px;
     color: #000000;
   }
 
-  &--highlighted {
-    background-color: #2D2D2D;
+  &--dark &__description {
+    color: var(--color-text);
   }
 
-  &--highlighted &__title {
+  &--dark &__title {
     color: #FFFFFF;
   }
 
@@ -85,6 +109,23 @@ export const skillContent: {
     color: #FFFFFF;
     cursor: pointer;
   }
+
+  &__description {
+    color: #000000;
+    overflow-wrap: break-word;
+  }
+}
+
+@keyframes hide {
+    to {
+        height: 0;
+    }
+}
+
+@keyframes show {
+    to {
+        height: unset;
+    }
 }
   `,
   js: `
@@ -102,21 +143,40 @@ function type() {
 type();
   `,
   vue: `
-<script setup lang="ts">
-defineProps<{
-  title?: string;
-  description?: string;
-  highlighted?: boolean;
+import { DESCRIPTION_TYPES } from '@/enums';
+import type { ITile } from '@/types';
+import { computed } from 'vue';
+import ImageViewer from './descriptionViewers/ImageViewer.vue';
+import EmailViewer from './descriptionViewers/LinkViewer.vue';
+import ListViewer from './descriptionViewers/ListViewer.vue';
+
+const props = defineProps<{
+  tile: ITile;
+  clickable?: boolean;
+  hidden?: boolean;
+  dark?: boolean;
 }>();
 
 const emit = defineEmits<{
   (e: "select"): void;
+  (e: "return"): void;
 }>();
 
-function select() {
-  emit("select");
-}
-</script>
+const descriptionViewers = {
+  [DESCRIPTION_TYPES.string]: undefined,
+  [DESCRIPTION_TYPES.link]: EmailViewer,
+  [DESCRIPTION_TYPES.image]: ImageViewer,
+  [DESCRIPTION_TYPES.list]: ListViewer
+};
+
+const descViewer = computed(() => {
+  return typeof props.tile.description === "object"
+    ? descriptionViewers[props.tile.description.type]
+    : descriptionViewers[DESCRIPTION_TYPES.string];
+});
+
+const isClickable = computed(() => props.clickable ?? true);
+const showDescription = computed(() => !isClickable.value);
   `,
   pixijs: ""
 };
@@ -175,7 +235,7 @@ export const aboutTiles: ITile[] = [{
     title: "Tech stack",
     description: {
       type: DESCRIPTION_TYPES.list,
-      items: ["JS/TS", "VueJS", "PixiJS", "Webpack", "GraphQL", "CSS/SCSS"]
+      items: ["JS/TS", "VueJS", "PixiJS", "Webpack", "GraphQL", "CSS/SCSS", "Git"]
     }
 }, {
   id: "passions",
@@ -204,5 +264,12 @@ export const aboutTiles: ITile[] = [{
   description: {
     type: DESCRIPTION_TYPES.list,
     items: ["russian (native)", "english (B1/B2)"]
+  }
+}, {
+  id: "experience",
+  title: "Experience",
+  description: {
+    type: DESCRIPTION_TYPES.list,
+    items: ["Web dev from 2017", "JS: 6+ years", "TS: 2 years", "Vue: 3+ years", "PixiJS: 2+ years"]
   }
 }];
