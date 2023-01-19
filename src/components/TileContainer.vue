@@ -41,7 +41,7 @@ function selectTile(tileId: string) {
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
-  background-color: #FFFFFF;
+  background-color: var(--color-text-white-soft);
   transition: left 0.5s linear;
   transition: all var(--tile-transition-time);
 

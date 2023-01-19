@@ -16,14 +16,14 @@
   .title {
     width: 100%;
     font-size: 36px;
-    color: #000000;
+    color: var(--color-text);
     text-align: center;
   }
 
   .subtitle {
     width: 100%;
     font-size: 30px;
-    color: #000000;
+    color: var(--color-text);
     text-align: center;
   }
 </style>

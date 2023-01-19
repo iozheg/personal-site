@@ -14,7 +14,7 @@ defineProps<{
 
 <style scoped lang="scss">
 .list-viewer {
-  color: #000000;
+  color: var(--color-text);
 
   ul {
     padding-left: 16px;

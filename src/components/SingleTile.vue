@@ -77,7 +77,7 @@ const showDescription = computed(() => !isClickable.value);
   width: var(--big-tile-size);
   height: var(--big-tile-size);
   padding: 15px 30px;
-  background-color: #FFFFFF;
+  background-color: var(--color-text-white-soft);
   transition: box-shadow 0.5s, left 0.5s;
 
   &--clickable {
@@ -101,27 +101,27 @@ const showDescription = computed(() => !isClickable.value);
   &__title {
     min-height: 56px;
     font-size: 36px;
-    color: #000000;
-  }
-
-  &--dark &__description {
     color: var(--color-text);
   }
 
+  &--dark &__description {
+    color: var(--color-text-light);
+  }
+
   &--dark &__title {
-    color: #FFFFFF;
+    color: var(--color-text-white-soft);
   }
 
   &__back-button {
     padding: 0;
     border: none;
     background: none;
-    color: #FFFFFF;
+    color: var(--color-text-white-soft);
     cursor: pointer;
   }
 
   &__description {
-    color: #000000;
+    color: var(--color-text);
     overflow-wrap: break-word;
   }
 }

@@ -43,7 +43,7 @@ const state = reactive({
 
     &.router-link-exact-active {
       background-color: #2D2D2D;
-      color: #FFFFFF;
+      color: var(--color-text-white-soft);
     }
   }
 }

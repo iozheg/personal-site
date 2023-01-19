@@ -1,5 +1,5 @@
 /* color palette from <https://github.com/vuejs/theme> */
-:root {
+/* :root {
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8f8f8;
   --vt-c-white-mute: #f2f2f2;
@@ -19,10 +19,10 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
-}
+} */
 
 /* semantic color variables for this project */
-:root {
+/* :root {
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
   --color-background-mute: var(--vt-c-white-mute);
@@ -34,16 +34,20 @@
   --color-text: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
-}
+} */
 
 :root {
+  --color-text: #282828;
+  --color-text-light: rgba(244, 242, 242, 1);
+  --color-text-white-soft: #f8f8f8;
+
   --big-tile-size: 256px;
   --small-tile-size: 240px;
 
   --tile-transition-time: 0.4s;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--vt-c-black);
     --color-background-soft: var(--vt-c-black-soft);
@@ -55,7 +59,7 @@
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
   }
-}
+} */
 
 *,
 *::before,
@@ -69,7 +73,7 @@
 body {
   min-height: 100vh;
   color: var(--color-text);
-  background: #ffffff; /* var(--color-background);*/
+  background: var(--color-text-white-soft); /* var(--color-background);*/
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
   font-family: Roboto, Oxygen, Ubuntu,
