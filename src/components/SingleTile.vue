@@ -99,6 +99,7 @@ const showDescription = computed(() => !isClickable.value);
   }
 
   &__title {
+    min-height: 56px;
     font-size: 36px;
     color: #000000;
   }
@@ -131,12 +132,6 @@ const showDescription = computed(() => !isClickable.value);
     }
 }
 
-@keyframes show {
-    to {
-        height: unset;
-    }
-}
-
 @media (min-width: 480px) {
   .single-tile {
     width: var(--small-tile-size);
@@ -144,7 +139,7 @@ const showDescription = computed(() => !isClickable.value);
 
     &--dark {
       width: calc(var(--small-tile-size) * 2);
-    width: 100%;
+      width: 100%;
       height: 100%;
     }
   }
