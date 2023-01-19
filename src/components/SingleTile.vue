@@ -4,6 +4,7 @@ import type { ITile } from '@/types';
 import { computed } from 'vue';
 import ImageViewer from './descriptionViewers/ImageViewer.vue';
 import EmailViewer from './descriptionViewers/LinkViewer.vue';
+import ListViewer from './descriptionViewers/ListViewer.vue';
 
 const props = defineProps<{
   tile: ITile;
@@ -20,7 +21,8 @@ const emit = defineEmits<{
 const descriptionViewers = {
   [DESCRIPTION_TYPES.string]: undefined,
   [DESCRIPTION_TYPES.link]: EmailViewer,
-  [DESCRIPTION_TYPES.image]: ImageViewer
+  [DESCRIPTION_TYPES.image]: ImageViewer,
+  [DESCRIPTION_TYPES.list]: ListViewer
 };
 
 const descViewer = computed(() => {

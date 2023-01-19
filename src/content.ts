@@ -153,6 +153,14 @@ export const contactTiles: ITile[] = [{
     label: "@netsev",
     href: "tg://resolve?domain=@netsev"
   }
+}, {
+  id: "instagram",
+  title: "Instagram",
+  description: {
+    type: DESCRIPTION_TYPES.link,
+    label: "@alex.netsev",
+    href: "https://www.instagram.com/alex.netsev/"
+  }
 }];
 
 export const aboutTiles: ITile[] = [{
@@ -160,6 +168,41 @@ export const aboutTiles: ITile[] = [{
   title: "Photo",
   description: {
     type: DESCRIPTION_TYPES.image,
-    imageUrl: "me.jpeg"
+    imageUrl: "me.jpg"
+  }
+}, {
+    id: "techStack",
+    title: "Tech stack",
+    description: {
+      type: DESCRIPTION_TYPES.list,
+      items: ["JS/TS", "VueJS", "PixiJS", "Webpack", "GraphQL", "CSS/SCSS"]
+    }
+}, {
+  id: "passions",
+  title: "Passions",
+  description: {
+    type: DESCRIPTION_TYPES.list,
+    items: ["clean code", "linting", "bug search", "new technologies"]
+  }
+}, {
+  id: "education",
+  title: "Education",
+  description: {
+    type: DESCRIPTION_TYPES.list,
+    items: ["Web dev (self-study)", "Google ML crush course (in progress)"]
+  }
+}, {
+  id: "hobbies",
+  title: "Hobbies",
+  description: {
+    type: DESCRIPTION_TYPES.list,
+    items: ["motorcycles", "snowbording", "walking", "coding"]
+  }
+}, {
+  id: "languages",
+  title: "Languages",
+  description: {
+    type: DESCRIPTION_TYPES.list,
+    items: ["russian (native)", "english (B1/B2)"]
   }
 }];
