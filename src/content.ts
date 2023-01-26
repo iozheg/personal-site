@@ -1,4 +1,4 @@
-import { DESCRIPTION_TYPES } from "./enums";
+import { DESCRIPTION_TYPES, CONTENT_TYPES } from "./enums";
 import type { ITile } from "./types";
 
 export const skillTiles: ITile[] = [{
@@ -20,7 +20,8 @@ export const skillTiles: ITile[] = [{
 }, {
   id: "pixijs",
   title: "PixiJS",
-  description: "PixiJS"
+  description: "PixiJS",
+  contentType: CONTENT_TYPES.pixi
 }];
 
 export const skillContent: {

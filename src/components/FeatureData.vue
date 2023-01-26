@@ -2,6 +2,7 @@
 import { CONTENT_TYPES } from '@/enums';
 import type { Component } from 'vue';
 import CodeViewer from './contentViewers/CodeViewer.vue';
+import PixiScene from './contentViewers/PixiScene.vue';
 
 defineProps<{
   type?: CONTENT_TYPES;
@@ -9,7 +10,8 @@ defineProps<{
 }>();
 
 const typeComponents: { [key in CONTENT_TYPES]: Component } = {
-  code: CodeViewer
+  code: CodeViewer,
+  pixi: PixiScene
 }
 </script>
 
