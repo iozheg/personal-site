@@ -1,0 +1,10 @@
+export const DOT_NUMBER = 30;
+export const MAX_CONNECTIONS = 10;
+export const MIN_SQRT_DISTANCE = 20000;
+export const MAX_SQRT_DISTANCE = 50000;
+export const MIN_VELOCITY = 5;
+export const MAX_VELOCITY = 20;
+export const DOT_SIZE = 5;
+export const DOT_COLOR =  0xffffff;
+export const LINE_WIDTH = 1;
+export const LINE_COLOR =  0xffffff;

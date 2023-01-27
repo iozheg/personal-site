@@ -1,9 +1,16 @@
 import * as PIXI from "pixijs";
-
-type IPoint = {
-  x: number;
-  y: number;
-}
+import { getRandomValue, getSqrtDistance, getVelocity } from "./helpers";
+import {
+  DOT_COLOR,
+  DOT_NUMBER,
+  DOT_SIZE,
+  LINE_COLOR,
+  LINE_WIDTH,
+  MAX_CONNECTIONS,
+  MAX_SQRT_DISTANCE,
+  MIN_SQRT_DISTANCE
+} from "./settings";
+import type { IPoint } from "./types";
 
 interface IDot {
   id: number;
@@ -29,17 +36,6 @@ interface IArea {
   width: number;
   height: number;
 }
-
-const DOT_NUMBER = 30;
-const MAX_CONNECTIONS = 10;
-const MIN_SQRT_DISTANCE = 20000;
-const MAX_SQRT_DISTANCE = 50000;
-const MIN_VELOCITY = 5;
-const MAX_VELOCITY = 20;
-const DOT_SIZE = 3;
-const DOT_COLOR =  0xffffff;
-const LINE_WIDTH = 1;
-const LINE_COLOR =  0xffffff;
 
 let dotId = 0;
 let connectionId = 0;
@@ -82,14 +78,14 @@ export class SceneObjects {
     return <IDot>{
       id: dotId++,
       position: {
-        x: this.getRandomPosition(this.area.x, this.area.width),
-        y: this.getRandomPosition(this.area.y, this.area.height)
+        x: getRandomValue(this.area.x, this.area.width),
+        y: getRandomValue(this.area.y, this.area.height)
       },
       velocity: {
-        x: this.getVelocity(),
-        y: this.getVelocity()
+        x: getVelocity(),
+        y: getVelocity()
       },
-      size: DOT_SIZE,
+      size: getRandomValue(1, DOT_SIZE),
       connections: [],
       shouldDestroy: false
     };
@@ -115,7 +111,7 @@ export class SceneObjects {
 
     const neighbours: IDot[] = [];
     for (let i = 0; i < freeDots.length && neighbours.length < amount; i++) {
-        if (this.getDistance(baseDot, freeDots[i]) < MIN_SQRT_DISTANCE) {
+        if (getSqrtDistance(baseDot.position, freeDots[i].position) < MIN_SQRT_DISTANCE) {
           neighbours.push(freeDots[i]);
         }
     }
@@ -146,7 +142,7 @@ export class SceneObjects {
       dotA,
       dotB,
       shouldDestroy: false,
-      distance: this.getDistance(dotA, dotB)
+      distance: getSqrtDistance(dotA.position, dotB.position)
     };
     dotA.connections.push(connection);
     dotB.connections.push(connection);
@@ -162,37 +158,13 @@ export class SceneObjects {
 
   private checkConnections(): void {
     this.connections.forEach(connection => {
-      const distance = this.getDistance(connection.dotA, connection.dotB);
+      const distance = getSqrtDistance(connection.dotA.position, connection.dotB.position);
       if (!connection.shouldDestroy && distance >= MAX_SQRT_DISTANCE) {
         this.removeConnection(connection);
       } else {
         connection.distance = distance;
       }
     });
-  }
-
-  private getDistance(dotA: IDot, dotB: IDot): number {
-    const sqrtDistance = Math.pow(dotA.position.x - dotB.position.x, 2)
-    + Math.pow(dotA.position.y - dotB.position.y, 2);
-
-    return sqrtDistance;
-  }
-
-  private getRandomPosition(min: number = 0, max: number = 1): number {
-    return Math.random() * (max - min) + min;
-  }
-
-  private getVelocity(): number {
-    const direction = this.getRandomPosition(-1, 1);
-
-    let velocity = 0;
-    if (direction < 0) {
-      velocity = Math.min(direction * MAX_VELOCITY, -MIN_VELOCITY);
-    } else {
-      velocity = Math.max(direction * MAX_VELOCITY, MIN_VELOCITY);
-    }
-    
-    return velocity;
   }
 
   private cleanScene(): void {
