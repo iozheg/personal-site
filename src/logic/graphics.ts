@@ -223,4 +223,8 @@ export class SceneObjects {
     }
     this.updateDotsPosition(delta);
   }
+
+  public updateSceneSize(area: IArea): void {
+    this.area = area;
+  }
 }
