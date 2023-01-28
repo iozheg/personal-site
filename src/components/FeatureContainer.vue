@@ -40,6 +40,9 @@ const emit = defineEmits<{
 
 @media (max-width: 768px) {
   .feature-container {
+    flex-direction: column;
+    flex-grow: 1;
+    align-content: flex-start;
     flex-wrap: wrap;
   }
 }

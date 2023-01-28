@@ -26,6 +26,7 @@ const typeComponents: { [key in CONTENT_TYPES]: Component } = {
 
 <style scoped>
 .feature-data {
+  flex-grow: 1;
   width: 100%;
   height: calc(var(--big-tile-size) * 2);
   overflow: hidden;

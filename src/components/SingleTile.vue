@@ -116,8 +116,13 @@ const showDescription = computed(() => !isClickable.value);
     padding: 0;
     border: none;
     background: none;
-    color: var(--color-text-white-soft);
+    font-size: 16px;
+    color: var(--color-text-white-faded);
     cursor: pointer;
+
+    &:hover {
+      color: var(--color-text-white-soft);
+    }
   }
 
   &__description {
@@ -138,14 +143,13 @@ const showDescription = computed(() => !isClickable.value);
     height: var(--small-tile-size);
 
     &--dark {
-      width: calc(var(--small-tile-size) * 2);
       width: 100%;
-      height: 100%;
+      height: fit-content;
     }
-  }
 
-  .single-tile__title {
-    font-size: 28px;
+    .single-tile__title {
+      font-size: 28px;
+    }
   }
 }
 
@@ -153,10 +157,10 @@ const showDescription = computed(() => !isClickable.value);
   .single-tile {
     width: var(--big-tile-size);
     height: var(--big-tile-size);
-  }
 
-  .single-tile__title {
-    font-size: 32px;
+    .single-tile__title {
+      font-size: 32px;
+    }
   }
 }
 
@@ -169,11 +173,19 @@ const showDescription = computed(() => !isClickable.value);
 @media (max-width: 480px) {
   .single-tile {
     width: 100%;
-    height: 100%;
-  }
+    height: fit-content;
 
-  .single-tile__title {
-    font-size: 28px;
+    &--clickable {
+      border-bottom: 1px solid var(--color-gray);
+    }
+
+    .single-tile__title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      font-size: 28px;
+    }
   }
 }
 </style>

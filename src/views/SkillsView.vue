@@ -46,3 +46,11 @@ function unselectTile() {
     />
   </div>
 </template>
+
+<style scoped>
+.wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+</style>
