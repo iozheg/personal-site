@@ -12,7 +12,7 @@ defineProps<{
 <style scoped lang="scss">
 .link-viewer {
   overflow-wrap: break-word;
-  text-decoration: underline 2px black;
+  text-decoration: underline;
 
   &:hover {
     text-decoration: none;

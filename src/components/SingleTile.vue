@@ -176,6 +176,9 @@ const showDescription = computed(() => !isClickable.value);
     height: fit-content;
 
     &--clickable {
+      &:first-child {
+        border-top: 1px solid var(--color-gray);
+      }
       border-bottom: 1px solid var(--color-gray);
     }
 

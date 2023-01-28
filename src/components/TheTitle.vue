@@ -12,6 +12,7 @@
 <style scope>
   .title-container {
     width: 100%;
+    margin-top: 2rem;
   }
   .title {
     width: 100%;
