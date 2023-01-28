@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SceneObjects } from "@/logic/graphics";
+import { SceneObjects } from "@/logic/SceneObjects";
 import * as PIXI from "pixijs";
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
