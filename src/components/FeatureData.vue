@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { CONTENT_TYPES } from '@/enums';
-import type { Component } from 'vue';
-import CodeViewer from './contentViewers/CodeViewer.vue';
-import PixiScene from './contentViewers/PixiScene.vue';
+import { CONTENT_TYPES } from "@/enums";
+import { defineAsyncComponent, type Component } from "vue";
+import CodeViewer from "./contentViewers/CodeViewer.vue";
 
 defineProps<{
   type?: CONTENT_TYPES;
@@ -11,7 +10,7 @@ defineProps<{
 
 const typeComponents: { [key in CONTENT_TYPES]: Component } = {
   code: CodeViewer,
-  pixi: PixiScene
+  pixi: defineAsyncComponent({ loader: () => import('./contentViewers/PixiScene.vue') })
 }
 </script>
 
