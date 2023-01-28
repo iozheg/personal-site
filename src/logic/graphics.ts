@@ -19,7 +19,7 @@ export class SceneObjects {
   private dots: IDot[] = [];
   private connections: IConnection[] = [];
 
-  private stage: PIXI.Container;
+  private stage: PIXI.Container | undefined;
   private area: IArea;
 
   private connectionsGraphics: PIXI.Graphics;
@@ -157,9 +157,10 @@ export class SceneObjects {
       gDot.position.set(dot.position.x, dot.position.y);
 
       dot.displayObject = gDot;
+      //@ts-ignore
       dot.displayObject.name = dot.id;
 
-      this.stage.addChild(gDot);
+      this.stage?.addChild(gDot);
     });
   }
 
@@ -226,5 +227,15 @@ export class SceneObjects {
 
   public updateSceneSize(area: IArea): void {
     this.area = area;
+  }
+
+  public destroy(): void {
+    this.dots = [];
+    this.connections = [];
+    this.lastTimer = 0;
+    this.stage = undefined;
+
+    dotId = 0;
+    connectionId = 0;
   }
 }

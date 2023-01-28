@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { SceneObjects } from "@/logic/graphics";
 import * as PIXI from "pixijs";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const SCENE_PADDING = -10;
 
 const pixiContainer = ref<HTMLElement | null>(null);
 
-const app = new PIXI.Application({
+const pixiApp = new PIXI.Application({
   width: 512,
   height: 512,
   antialias: true,
@@ -15,21 +15,23 @@ const app = new PIXI.Application({
   autoDensity: true
 });
 
+let sceneObjects: SceneObjects;
+
 enablePixiConsole();
 
 onMounted(() => {
-  pixiContainer.value?.appendChild(app.view as HTMLCanvasElement);
-  app.resizeTo = pixiContainer.value as HTMLElement;
+  pixiContainer.value?.appendChild(pixiApp.view as HTMLCanvasElement);
+  pixiApp.resizeTo = pixiContainer.value as HTMLElement;
 
   const size = getSceneSize();
-  const sceneObjects = new SceneObjects(app.stage, {
+  sceneObjects = new SceneObjects(pixiApp.stage, {
     x: SCENE_PADDING,
     y: SCENE_PADDING,
     width: size.width - SCENE_PADDING,
     height: size.height - SCENE_PADDING,
   });
 
-  app.ticker.add(sceneObjects.update.bind(sceneObjects));
+  pixiApp.ticker.add(sceneObjects.update.bind(sceneObjects));
 
   addEventListener("resize", () => {
     const size = getSceneSize();
@@ -43,22 +45,24 @@ onMounted(() => {
   });
 });
 
+onBeforeUnmount(() => {
+  sceneObjects?.destroy();
+  pixiApp.destroy(true, true);
+});
+
 function getSceneSize(): { width: number; height: number; } {
   const bigTileSize = 256;
   const smallTileSize = 240;
 
   const mediaQueries = [{
-    query: "(min-width: 480px)",
     condition: (x: number) => x >= 480 && x < 768,
     width: smallTileSize * 2,
     height: smallTileSize * 2
   }, {
-    query: "(min-width: 768px)",
     condition: (x: number) => x >= 768 && x < 1024,
     width: bigTileSize * 2,
     height: bigTileSize * 2
   }, {
-    query: "(min-width: 1024px)",
     condition: (x: number) => x >= 1024,
     width: bigTileSize * 3,
     height: bigTileSize * 2
@@ -73,6 +77,7 @@ function getSceneSize(): { width: number; height: number; } {
 }
 
 function enablePixiConsole() {
+  //@ts-ignore
   window.PIXI = PIXI;
 }
 </script>
