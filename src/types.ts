@@ -25,8 +25,3 @@ export interface ITile {
   description?: string | IDescription;
   contentType?: CONTENT_TYPES;
 }
-
-export type IPoint = {
-  x: number;
-  y: number;
-}

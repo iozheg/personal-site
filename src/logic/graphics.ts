@@ -10,32 +10,7 @@ import {
   MAX_SQRT_DISTANCE,
   MIN_SQRT_DISTANCE
 } from "./settings";
-import type { IPoint } from "./types";
-
-interface IDot {
-  id: number;
-  position: IPoint;
-  velocity: IPoint;
-  size: number;
-  connections: IConnection[];
-  shouldDestroy: boolean;
-  displayObject?: PIXI.Graphics;
-}
-
-interface IConnection {
-  id: number;
-  dotA: IDot;
-  dotB: IDot;
-  distance?: number;
-  shouldDestroy: boolean;
-}
-
-interface IArea {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-}
+import type { IDot, IConnection, IArea } from "./types";
 
 let dotId = 0;
 let connectionId = 0;
@@ -144,7 +119,7 @@ export class SceneObjects {
       shouldDestroy: false,
       distance: getSqrtDistance(dotA.position, dotB.position)
     };
-    dotA.connections.push(connection);
+  dotA.connections.push(connection);
     dotB.connections.push(connection);
 
     this.connections.push(connection);
