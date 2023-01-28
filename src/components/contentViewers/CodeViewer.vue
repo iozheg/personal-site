@@ -8,6 +8,7 @@ const props = defineProps<{
 let currentContent = ref("");
 let timeout: number;
 let i = 0;
+const sliceLength = 10;
 
 watch(
   () => props.content,
@@ -28,8 +29,8 @@ onBeforeUnmount(() => {
 
 function type() {
     if (i < props.content.length) {
-      currentContent.value += props.content[i];
-      i++;
+      currentContent.value += props.content.slice(i, i + sliceLength);
+      i += sliceLength;
       timeout = setTimeout(type, 10);
     } else {
       clearTimeout(timeout);
